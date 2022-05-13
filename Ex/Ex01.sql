@@ -420,9 +420,15 @@ select  sysdate,
 from dual;
 
 
+-- 일반함수>NVL(컬럼명, null일때값)/NVL2(컬럼명, null아닐때값, null일때 값)
+
+select  first_name,
+        commission_pct,
+        nvl(commission_pct, 0),
+        nvl2(commission_pct, 100, 0)
+from employees;
 
 
 
 
 
-, first_name from employees;
