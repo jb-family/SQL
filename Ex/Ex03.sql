@@ -158,7 +158,86 @@ where em.department_id = de.department_id
 and jo.job_id = em.job_id
 and salary >= 7000;
 
+--equi join
+select  emp.first_name
+        ,emp.department_id
+        ,dep.department_id
+        ,dep.department_name
+from    employees emp ,departments dep
+where   emp.department_id = dep.department_id;
 
+
+-- left outer join(첫번째 방법)
+select  emp.first_name
+        ,emp.department_id
+        ,dep.department_id
+        ,dep.department_name
+from    employees emp left outer join departments dep
+on      emp.department_id = dep.department_id;
+
+-- left outer join(두번째 방법)
+select  emp.first_name
+        ,emp.department_id
+        ,dep.department_id
+        ,dep.department_name
+from    employees emp ,departments dep
+where   emp.department_id = dep.department_id(+);
+
+
+--equi join
+select  emp.first_name
+        ,emp.department_id
+        ,dep.department_id
+        ,dep.department_name
+from    employees emp ,departments dep
+where   emp.department_id = dep.department_id;
+
+
+-- right outer join(첫번째 방법)
+select  emp.first_name
+        ,emp.department_id
+        ,dep.department_id
+        ,dep.department_name
+from    employees emp right outer join departments dep
+on      emp.department_id = dep.department_id;
+
+-- right outer join(두번째 방법)
+select  emp.first_name
+        ,emp.department_id
+        ,dep.department_id
+        ,dep.department_name
+from    employees emp, departments dep
+where   emp.department_id(+) = dep.department_id;
+
+-- right outer join --> left outer join (비교 join만 바꾸는 것)
+select  emp.first_name
+        ,emp.department_id
+        ,dep.department_id
+        ,dep.department_name
+from    departments dep left outer join employees emp
+on      emp.department_id = dep.department_id;
+
+-- full outer join 
+select  emp.first_name
+        ,emp.department_id
+        ,dep.department_id
+        ,dep.department_name
+from    employees emp full outer join departments dep
+on   emp.department_id = dep.department_id;
+
+-- self join ★
+select  emp.employee_id
+        ,emp.first_name
+        ,emp.salary
+        ,emp.phone_number
+        ,man.employee_id
+        ,man.first_name
+        ,man.phone_number
+from    employees emp, employees man
+where   emp.manager_id = man.employee_id;
+
+select  *
+from    employees;
 
     
 
