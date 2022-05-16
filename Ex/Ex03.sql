@@ -217,7 +217,7 @@ select  emp.first_name
 from    departments dep left outer join employees emp
 on      emp.department_id = dep.department_id;
 
--- full outer join 
+-- full outer join  
 select  emp.first_name
         ,emp.department_id
         ,dep.department_id
