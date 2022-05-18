@@ -71,4 +71,38 @@ from    (select  rownum rn
 where   ort.rn >= 3
 and     ort.rn <= 7;
 
+------------------- DDL -------------------
+-- (테이블 만들기)
+-- 컬럼명과 자료형은 공백으로 구분한다.
+-- 컬럼끼리는 ,로 구분한다.
+
+-- book 테이블 생성 
+create table book(
+    book_id number(5)
+    ,title varchar2(50)
+    ,author varchar2(10)
+    ,pub_date date
+);
+
+-- 테이블안에 컬럼 추가
+alter table book add(pubs varchar2(50));
+
+-- 테이블안에 컬럼 수정(자료형)
+alter table book modify(title varchar2(100));
+
+-- 테이블안에 컬럼 수정(컬럼명)
+alter table book rename column title to subject;
+
+-- 테이블 내 컬럼 삭제
+alter table book drop (author);
+
+-- 테이블명 변경
+rename book to article;
+
+-- 테이블 삭제
+drop table article;
+
+-- 테이블 조회
+select  *
+from    article;
 
