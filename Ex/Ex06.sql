@@ -66,7 +66,7 @@ from    (select  rownum rn
                  from    employees
                  where   hire_date >= '07/01/01'
                  and     hire_date <= '07/12/31'
-                 order by hire_date) ot
+                 order by salary desc) ot
         ) ort
 where   ort.rn >= 3
 and     ort.rn <= 7;
