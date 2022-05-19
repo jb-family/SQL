@@ -46,58 +46,19 @@ order by hire_date desc;
 니저별최대급여 입니다
 (9 건)
 */
-select *
-from employees
-where hire_date >= '2005/01/01'
-order by manager_id asc;
 
-select  emp.manager_id
-        ,emp.first_name
-        ,man.avgSalary
-        ,man.minSalary
-        ,man.maxSalary
-        ,emp.hire_date
-from    employees emp, (select  manager_id
-                                ,round(avg(salary),0) avgSalary
-                                ,min(salary) minSalary
-                                ,max(salary) maxSalary
-                        from    employees 
-                        group by manager_id
-                        having  avg(salary) >= 5000
-                        order by avg(salary) desc) man
-where   emp.manager_id = man.manager_id
-and     emp.hire_date >= '2005/01/01';
-
-
-select  manager_id
-        ,round(avg(salary),0)
-        ,min(salary)
-        ,max(salary)
-from    employees 
-group by manager_id
-having  avg(salary) >= 5000
-order by avg(salary) desc;
-
-select *
-from employees;
-
-
-select  man.manager_id
+select  man.employee_id
         ,man.first_name
-        ,emp.avgSalary
-        ,emp.minSalary
-        ,emp.maxSalary
-        ,man.hire_date
-from    employees man, (select  employee_id
-                                ,round(avg(salary),0) avgSalary
-                                ,min(salary) minSalary
-                                ,max(salary) maxSalary
-                        from    employees 
-                        group by employee_id
-                        having  avg(salary) >= 5000
-                        order by avg(salary) desc) emp
-where   man.manager_id = emp.employee_id
-and     man.hire_date >= '2005/01/01';
+        ,round(avg(emp.salary),0) 
+        ,min(emp.salary)
+        ,max(emp.salary)
+from    employees emp, employees man
+where   emp.manager_id = man.employee_id
+and     emp.hire_date >= '2005/01/01'
+group by man.employee_id, man.first_name
+having   round(avg(emp.salary),0) >= 5000
+order by round(avg(emp.salary),0) desc;
+
 
 /*
 4번문제
